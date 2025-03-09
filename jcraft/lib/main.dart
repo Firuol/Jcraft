@@ -406,6 +406,7 @@ class _FeaturedItemState extends State<FeaturedItem> {
                 widget.price,
                 style: TextStyle(
                   fontSize: 14.0,
+                  fontWeight: FontWeight.bold,
                   color: Color.fromRGBO(158, 63, 22, 1.0),
                 ),
               ),
@@ -497,6 +498,7 @@ class _PopularItemState extends State<PopularItem> {
                 widget.price,
                 style: TextStyle(
                   fontSize: 14.0,
+                  fontWeight: FontWeight.bold,
                   color: Color.fromRGBO(158, 63, 22, 1.0),
                 ),
               ),
