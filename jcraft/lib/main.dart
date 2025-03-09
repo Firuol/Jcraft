@@ -104,8 +104,8 @@ class _HomeContentState extends State<HomeContent> {
                       'Hello!',
                       style: TextStyle(
                         fontSize: 12,
-                        fontWeight: FontWeight.bold,
                         color: Colors.grey,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
@@ -137,21 +137,22 @@ class _HomeContentState extends State<HomeContent> {
 
           // Search Bar
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: 'Search here',
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-          ),
+  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+  child: Container(
+    decoration: BoxDecoration(
+      color: Colors.grey[200],
+      borderRadius: BorderRadius.circular(50.0),
+    ),
+    child: TextField(
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.search),
+        hintText: 'Search here',
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.symmetric(vertical: 16.0), // Vertical padding to center the text
+      ),
+    ),
+  ),
+),
 
           // Horizontal Page Indicator (Includes Discount Section as Page 1)
           SizedBox(
@@ -169,7 +170,7 @@ class _HomeContentState extends State<HomeContent> {
                   margin: EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(158, 63, 22, 1.0),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Row(
                     children: [
@@ -188,7 +189,7 @@ class _HomeContentState extends State<HomeContent> {
                       Icon(
                         Icons.local_offer,
                         color: Colors.white,
-                        size: 40.0,
+                        size: 50.0,
                       ),
                     ],
                   ),
@@ -222,7 +223,7 @@ class _HomeContentState extends State<HomeContent> {
 
           // Featured Section
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
