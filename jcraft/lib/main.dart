@@ -104,6 +104,7 @@ class _HomeContentState extends State<HomeContent> {
                       'Hello!',
                       style: TextStyle(
                         fontSize: 12,
+                        fontWeight: FontWeight.bold,
                         color: Colors.grey,
                       ),
                     ),
@@ -154,7 +155,7 @@ class _HomeContentState extends State<HomeContent> {
 
           // Horizontal Page Indicator (Includes Discount Section as Page 1)
           SizedBox(
-            height: 200, // Adjust the height as needed
+            height: 150, // Fixed height for all pages
             child: PageView(
               controller: _pageController,
               onPageChanged: (int page) {
@@ -165,7 +166,7 @@ class _HomeContentState extends State<HomeContent> {
               children: [
                 // Page 1: Discount Section
                 Container(
-                  padding: EdgeInsets.all(16.0),
+                  margin: EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(158, 63, 22, 1.0),
                     borderRadius: BorderRadius.circular(8.0),
@@ -173,11 +174,14 @@ class _HomeContentState extends State<HomeContent> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          'Get Winter Discount\n20% Off\nFor New Buyers',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            'Get Winter Discount\n20% Off\nFor New Buyers',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            ),
                           ),
                         ),
                       ),
@@ -218,7 +222,7 @@ class _HomeContentState extends State<HomeContent> {
 
           // Featured Section
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -301,7 +305,7 @@ class _HomeContentState extends State<HomeContent> {
   // Helper method to build page indicator items
   Widget _buildPageIndicatorItem(String text) {
     return Container(
-      margin: EdgeInsets.all(16.0),
+      margin: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8.0),
