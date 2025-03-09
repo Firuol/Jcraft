@@ -70,7 +70,15 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class HomeContent extends StatelessWidget {
+class HomeContent extends StatefulWidget {
+  @override
+  _HomeContentState createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeContent> {
+  final PageController _pageController = PageController(); // Controller for the PageView
+  int _currentPage = 0; // Track the current page for the horizontal page indicator
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -144,33 +152,67 @@ class HomeContent extends StatelessWidget {
             ),
           ),
 
-          // Discount Promotion
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(158, 63, 22, 1.0),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Get Winter Discount\n20% Off\nFor New Buyers',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.0,
+          // Horizontal Page Indicator (Includes Discount Section as Page 1)
+          SizedBox(
+            height: 200, // Adjust the height as needed
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (int page) {
+                setState(() {
+                  _currentPage = page; // Update the current page
+                });
+              },
+              children: [
+                // Page 1: Discount Section
+                Container(
+                  padding: EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(158, 63, 22, 1.0),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Get Winter Discount\n20% Off\nFor New Buyers',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
                       ),
-                    ),
+                      Icon(
+                        Icons.local_offer,
+                        color: Colors.white,
+                        size: 40.0,
+                      ),
+                    ],
                   ),
-                  Icon(
-                    Icons.local_offer,
-                    color: Colors.white,
-                    size: 40.0,
+                ),
+                // Page 2: Additional Content
+                _buildPageIndicatorItem('Page 2'),
+                // Page 3: Additional Content
+                _buildPageIndicatorItem('Page 3'),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List<Widget>.generate(
+              3, // Number of pages
+              (int index) {
+                return Container(
+                  width: 8.0,
+                  height: 8.0,
+                  margin: EdgeInsets.symmetric(horizontal: 4.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: _currentPage == index
+                        ? Color.fromRGBO(158, 63, 22, 1.0) // Selected page color
+                        : Colors.grey[300], // Unselected page color
                   ),
-                ],
-              ),
+                );
+              },
             ),
           ),
 
@@ -254,6 +296,26 @@ class HomeContent extends StatelessWidget {
   // Helper method to build popular items
   Widget _buildPopularItem(String name, String price) {
     return PopularItem(name: name, price: price);
+  }
+
+  // Helper method to build page indicator items
+  Widget _buildPageIndicatorItem(String text) {
+    return Container(
+      margin: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
   }
 }
 
