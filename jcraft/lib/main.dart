@@ -239,6 +239,7 @@ class _HomeContentState extends State<HomeContent> {
                   style: TextStyle(
                     color: Color.fromRGBO(158, 63, 22, 1.0),
                     fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -273,6 +274,7 @@ class _HomeContentState extends State<HomeContent> {
                   style: TextStyle(
                     color: Color.fromRGBO(158, 63, 22, 1.0),
                     fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -341,7 +343,7 @@ class _FeaturedItemState extends State<FeaturedItem> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(8.0),
-      width: 150.0,
+      width: 120.0,
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8.0),
@@ -432,7 +434,7 @@ class _PopularItemState extends State<PopularItem> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(8.0),
-      width: 150.0,
+      width: 120.0,
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8.0),
