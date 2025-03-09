@@ -194,6 +194,30 @@ class HomePage extends StatelessWidget {
 
   // Helper method to build featured items
   Widget _buildFeaturedItem(String name, String price) {
+    return FeaturedItem(name: name, price: price);
+  }
+
+  // Helper method to build popular items
+  Widget _buildPopularItem(String name, String price) {
+    return PopularItem(name: name, price: price);
+  }
+}
+
+class FeaturedItem extends StatefulWidget {
+  final String name;
+  final String price;
+
+  FeaturedItem({required this.name, required this.price});
+
+  @override
+  _FeaturedItemState createState() => _FeaturedItemState();
+}
+
+class _FeaturedItemState extends State<FeaturedItem> {
+  bool isFavorited = false; // Track favorite state
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(8.0),
       width: 150.0,
@@ -204,17 +228,45 @@ class HomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
         children: [
-          Image.asset(
-            'assets/images/$name.png', // Replace with your image path
-            height: 80.0,
-            fit: BoxFit.cover,
+          Stack(
+            children: [
+              // Item Image
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
+                ),
+                child: Image.asset(
+                  'assets/images/${widget.name}.png', // Replace with your image path
+                  height: 80.0,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              // Favorite Icon
+              Positioned(
+                top: 5,
+                right: 5,
+                child: IconButton(
+                  icon: Icon(
+                    isFavorited ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorited ? Colors.yellow : Colors.grey,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      isFavorited = !isFavorited; // Toggle favorite state
+                    });
+                  },
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Align(
               alignment: Alignment.centerLeft, // Align name to the left
               child: Text(
-                name,
+                widget.name,
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
@@ -227,7 +279,7 @@ class HomePage extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft, // Align price to the left
               child: Text(
-                price,
+                widget.price,
                 style: TextStyle(
                   fontSize: 14.0,
                   color: Color.fromRGBO(158, 63, 22, 1.0),
@@ -238,11 +290,6 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  // Helper method to build popular items
-  Widget _buildPopularItem(String name, String price) {
-    return PopularItem(name: name, price: price);
   }
 }
 
@@ -273,10 +320,18 @@ class _PopularItemState extends State<PopularItem> {
         children: [
           Stack(
             children: [
-              Image.asset(
-                'assets/images/${widget.name}.png', // Replace with your image path
-                height: 80.0,
-                fit: BoxFit.cover,
+              // Item Image
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
+                ),
+                child: Image.asset(
+                  'assets/images/${widget.name}.png', // Replace with your image path
+                  height: 80.0,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
               // Favorite Icon
               Positioned(
